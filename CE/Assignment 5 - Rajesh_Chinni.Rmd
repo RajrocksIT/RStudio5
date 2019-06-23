@@ -1,0 +1,62 @@
+---
+title: "Classexrcise-Rajesh_Chinni"
+output: html_document
+---
+
+```{r}
+Rajcereal = read.csv('cereals.CSV',header = TRUE, sep = ',')
+Rajcereal
+```
+
+```{r}
+# 1 - Report on the measures of centrality and spread for the calories variable of the data with at least two measures
+# each.
+mean(Rajcereal$Calories)
+median(Rajcereal$Calories)
+table(Rajcereal$Calories)
+range(Rajcereal$Calories)
+diff(range(Rajcereal$Calories))
+sd(Rajcereal$Calories)
+
+```
+
+```{r}
+# 3 - Plot histograms for the calories and protein distributions of the items. What difference(s) do you see, briefly
+# explain how we should interpret the difference ?
+hist(Rajcereal$Calories)
+hist(Rajcereal$Protein)
+Skewnessofcalories=3 * (mean(Rajcereal$Calories)-median(Rajcereal$Calories))/sd(Rajcereal$Calories)
+Skewnessofcalories
+Skewnessofprotein=3 * (mean(Rajcereal$Protein)-median(Rajcereal$Protein))/sd(Rajcereal$Protein)
+Skewnessofprotein
+
+# Both histograms are not normally distributed as they are negatively skewed. Majority of calories are between 80 and # 120. Majority of proteins are between 1 and 3.
+```
+
+```{r}
+# 4 -Create a diagram to spot outliers for the protein distribution of the items (extremely high or low in protein
+# content). What type of items do you think they are ? Why ?
+boxplot(Rajcereal$Protein)
+mean(Rajcereal$Protein)
+q1 = quantile(Rajcereal$Protein, 0.25)
+q3 = quantile(Rajcereal$Protein, 0.75)
+q1
+q3
+outlierdeterminant = (IQR(Rajcereal$Protein))*1.5
+outlierdeterminant
+
+
+# An outlier is defined as a data point that is located outside the fences ("whiskers") of the boxplot (e.g: outside  # 1.5 times the interquartile range above the upper quartile and below the lower quartile).  q1 and q3 are 2 and 3. #Here the outlier deteminant is 1.5 (i.e, 3 minus 2  multiplied by 1.5). Therefore, outliers would be below o.5 (i.e, #2-1.5) and above 4.5 (i.e, 3+1.5). So the ouliers are 5 and 6 which are above 4.5
+
+```
+
+```{r}
+# 5 - we are really interested amount of protein in items per calories. To investigate this, you need to calculate
+# protein per calories by dividing protein amount byt the calorie (protein/calories). What is the average protein per
+# calories amount for an item.
+proteinpercalorie = round(Rajcereal$Protein/Rajcereal$Calories, 3)
+proteinpercalorie
+mean(proteinpercalorie)
+
+```
+

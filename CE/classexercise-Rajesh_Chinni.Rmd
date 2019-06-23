@@ -1,0 +1,33 @@
+---
+title: "Classexrcise-Rajesh_Chinni"
+output: html_document
+---
+
+```{r}
+Rajcereal = read.csv('cereals.CSV',header = TRUE, sep = ',')
+Rajcereal
+```
+
+```{r}
+# 1 - Report on the measures of centrality and spread for the calories variable of the data with at least two measures
+# each.
+mean(Rajcereal$Calories)
+median(Rajcereal$Calories)
+table(Rajcereal$Calories)
+range(Rajcereal$Calories)
+diff(range(Rajcereal$Calories))
+sd(Rajcereal$Calories)
+
+```
+
+```{r}
+hist(Rajcereal$Calories)
+hist(Rajcereal$Protein)
+```
+
+```{r}
+boxplot(Rajcereal$Protein)
+boxplot.stats(Rajcereal$Protein)
+
+```
+

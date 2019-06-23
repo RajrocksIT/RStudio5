@@ -1,0 +1,74 @@
+---
+title: "class notes"
+output: html_document
+---
+
+```{r}
+Rajcereal = read.csv('cereals.CSV',header = TRUE, sep = ',')
+Rajcereal
+mean(Rajcereal$Protein)
+sd(Rajcereal$Protein)
+
+hist(Rajcereal$Protein)
+
+Rajcereal[Rajcereal$Protein>5,]
+
+
+
+
+```
+
+```{r}
+#relation between calories and Type
+table(Rajcereal$Type)
+mean(Rajcereal$Calories)
+sd(Rajcereal$Calories)
+
+#relation between protein and fiber
+#plot(Rajcereal$Protein, Rajcereal$Fiber)
+plot(as.numeric(Rajcereal$Protein), as.numeric(Rajcereal$Fiber))
+
+```
+
+```{r}
+#install.packages('lattice')
+#install.packages('ggplot2')
+require(lattice)
+require(ggplot2)
+require(datasets)
+
+```
+
+```{r}
+mpg
+hist(mpg$hwy)
+histogram(mpg$hwy, main = 'hwy distribution')
+ggplot(mpg)+geom_histogram(aes(x=hwy, fill = 'red'), bins = 10)
+```
+
+```{r}
+histogram(~mpg$hwy | as.factor(mpg$cyl))
+hist(mpg[mpg$cyl==6,]$hwy)
+hist(mpg[mpg$cyl==8,]$hwy)
+hist(mpg[mpg$cyl==4,]$hwy)
+
+```
+
+```{r}
+xyplot(mpg$hwy~mpg$cty)
+histogram(~hwy, data = mpg)
+#histogram(~hwy | as.factor(year), data = mpg)
+```
+
+```{r}
+histogram(~hwy | as.factor(year) + as.factor(cyl), data = mpg)
+```
+
+```{r}
+# desnityplot = throw rope on a histogram lol
+densityplot(~hwy, data = mpg)
+densityplot(~hwy+cty, data = mpg)
+
+# why is the densityplot like a lama hump
+```
+
